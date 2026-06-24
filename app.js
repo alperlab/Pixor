@@ -69,7 +69,7 @@ data.current.temperature_2m
 );
 
 const weatherBox =
-document.querySelector(".weatherTemp");
+document.getElementById("weatherTemp");
 
 if(weatherBox){
 
