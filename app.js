@@ -95,3 +95,6 @@ setInterval(
 loadWeather,
 300000
 );
+console.log("WEATHER START");
+
+loadWeather();
