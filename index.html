@@ -204,28 +204,67 @@ font-size:36px;
 
 @media(max-width:768px){
 
-.grid{
-
-grid-template-columns:1fr;
-grid-auto-rows:minmax(140px,1fr);
-
-}
-
-.big{
-
-font-size:42px;
-
-}
-
-.weatherTemp{
-
-font-size:40px;
-
+.dashboard{
+padding:6px;
 }
 
 .logo{
+font-size:18px;
+}
 
+.header{
+margin-bottom:6px;
+}
+
+.controls{
+gap:4px;
+}
+
+select,
+button{
+padding:4px 6px;
+font-size:12px;
+}
+
+.grid{
+
+grid-template-columns:1fr 1fr;
+grid-template-rows:repeat(3,1fr);
+
+height:calc(100vh - 70px);
+
+gap:6px;
+
+}
+
+.panel{
+padding:8px;
+overflow:hidden;
+}
+
+.big{
 font-size:24px;
+}
+
+.stock{
+font-size:12px;
+line-height:1.2;
+}
+
+.weatherIcon{
+font-size:22px;
+}
+
+.weatherTemp{
+font-size:22px;
+}
+
+.news{
+font-size:10px;
+line-height:1.2;
+}
+
+}
 
 }
 
@@ -237,8 +276,15 @@ font-size:24px;
 
 .grid{
 
-grid-template-columns:1fr 1fr;
-grid-auto-rows:minmax(180px,1fr);
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,1fr);
+
+height:calc(100vh - 90px);
+
+
+}
+
+}
 
 }
 
