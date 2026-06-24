@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Pixor Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PIXOR Dashboard</title>
 
 <style>
 
@@ -15,146 +16,361 @@ box-sizing:border-box;
 font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
+:root{
+
+--bg:#02070b;
+--panel:#050505;
+--border:#00d9ff;
+--text:#8ffcff;
+
+}
+
+.theme-oled{
+
+--bg:#000000;
+--panel:#030303;
+--border:#00d9ff;
+--text:#ffffff;
+
+}
+
+.theme-matte{
+
+--bg:#121418;
+--panel:#1c2026;
+--border:#00bcd4;
+--text:#dffcff;
+
+}
+
+.theme-light{
+
+--bg:#f5f7fa;
+--panel:#ffffff;
+--border:#0099ff;
+--text:#111111;
+
+}
+
 body{
-background:#02070b;
-color:#8ffcff;
-padding:12px;
+
+background:var(--bg);
+color:var(--text);
+width:100vw;
+height:100vh;
+overflow:hidden;
+
 }
 
 .dashboard{
-max-width:1100px;
-margin:auto;
-border:2px solid #00d9ff;
+
+width:100%;
+height:100%;
 padding:12px;
-box-shadow:0 0 20px #00d9ff;
+display:flex;
+flex-direction:column;
+
 }
 
 .header{
+
 display:flex;
 justify-content:space-between;
 align-items:center;
+gap:10px;
 margin-bottom:12px;
+
 }
 
 .logo{
-font-size:24px;
+
+font-size:32px;
 font-weight:700;
-letter-spacing:2px;
+letter-spacing:3px;
+
 }
 
-select{
-background:#000;
-color:#8ffcff;
-border:1px solid #00d9ff;
-padding:6px;
+.controls{
+
+display:flex;
+gap:8px;
+
+}
+
+select,
+button{
+
+background:var(--panel);
+color:var(--text);
+border:1px solid var(--border);
+padding:8px 12px;
+cursor:pointer;
+
 }
 
 .grid{
+
+flex:1;
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
+gap:12px;
+
 }
 
 .panel{
-background:#050505;
-border:1px solid #00d9ff;
-padding:12px;
+
+background:var(--panel);
+border:1px solid var(--border);
+
+padding:14px;
+
 box-shadow:
-0 0 10px #00d9ff,
-inset 0 0 10px #00d9ff;
+0 0 10px var(--border),
+inset 0 0 10px var(--border);
+
+border-radius:8px;
+
 }
 
 .title{
-font-size:12px;
+
+font-size:13px;
 opacity:.8;
 margin-bottom:10px;
+
 }
 
 .big{
-font-size:52px;
+
+font-size:64px;
 font-weight:bold;
+
 }
 
 .orange{
-color:#ff8f00;
+
+color:#ff9900;
+
 }
 
 .clock{
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 text-align:center;
+
 }
 
 .weather{
-font-size:40px;
+
 text-align:center;
+
+}
+
+.weatherIcon{
+
+font-size:48px;
+
+}
+
+.weatherTemp{
+
+font-size:52px;
+
 }
 
 .news{
-line-height:1.8;
-font-size:14px;
+
+line-height:2;
+font-size:16px;
+
 }
 
-@media(max-width:700px){
+.stock{
+
+line-height:1.8;
+font-size:26px;
+
+}
+
+.calendar{
+
+font-size:36px;
+
+}
+
+/* TELEFON */
+
+@media(max-width:768px){
 
 .grid{
+
 grid-template-columns:1fr;
+grid-auto-rows:minmax(140px,1fr);
+
 }
 
 .big{
+
+font-size:42px;
+
+}
+
+.weatherTemp{
+
 font-size:40px;
+
+}
+
+.logo{
+
+font-size:24px;
+
+}
+
+}
+
+/* iPad Mini */
+
+@media(min-width:769px) and (max-width:1024px){
+
+.grid{
+
+grid-template-columns:1fr 1fr;
+grid-auto-rows:minmax(180px,1fr);
+
+}
+
+}
+
+/* iPad Pro + Desktop */
+
+@media(min-width:1025px){
+
+.grid{
+
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,1fr);
+
 }
 
 }
 
 </style>
+
 </head>
+
 <body>
 
 <div class="dashboard">
 
 <div class="header">
-<div class="logo">PIXOR</div>
+
+<div class="logo">
+PIXOR
+</div>
+
+<div class="controls">
 
 <select id="lang">
+
 <option value="tr">Türkçe</option>
 <option value="en">English</option>
+
 </select>
+
+<select id="theme">
+
+<option value="">Neon</option>
+<option value="theme-oled">OLED</option>
+<option value="theme-matte">Matte</option>
+<option value="theme-light">Light</option>
+
+</select>
+
+<button id="fullscreenBtn">
+⛶
+</button>
+
+</div>
+
 </div>
 
 <div class="grid">
 
 <div class="panel">
-<div class="title">BTC</div>
-<div class="big orange">98,193.21</div>
+
+<div class="title">
+BTC
 </div>
 
-<div class="panel">
-<div class="title">NASDAQ</div>
+<div class="big orange">
+98,193.21
+</div>
+
+</div>
+
+<div class="panel stock">
+
+<div class="title">
+NASDAQ
+</div>
+
 <div>TSLA 403.31</div>
 <div>NVDA 133.23</div>
 <div>AAPL 234.40</div>
+
 </div>
 
 <div class="panel clock">
-<div class="title" id="clockTitle">Saat</div>
-<div class="big" id="clock"></div>
+
+<div class="title" id="clockTitle">
+Saat
+</div>
+
+<div class="big" id="clock">
+00:00:00
+</div>
+
 </div>
 
 <div class="panel weather">
-<div class="title" id="weatherTitle">Hava Durumu</div>
-☀️
-<div>21°C</div>
+
+<div class="title" id="weatherTitle">
+Hava Durumu
 </div>
 
-<div class="panel">
-<div class="title" id="calendarTitle">Takvim</div>
+<div class="weatherIcon">
+☀️
+</div>
+
+<div class="weatherTemp">
+21°C
+</div>
+
+</div>
+
+<div class="panel calendar">
+
+<div class="title" id="calendarTitle">
+Takvim
+</div>
+
 <div id="date"></div>
+
 </div>
 
 <div class="panel news">
-<div class="title">NEWS</div>
+
+<div class="title">
+NEWS
+</div>
+
 <div>• Yapay zeka gelişmeleri</div>
 <div>• Kripto piyasaları</div>
 <div>• Teknoloji haberleri</div>
+
 </div>
 
 </div>
@@ -164,16 +380,19 @@ font-size:40px;
 <script>
 
 const text={
+
 tr:{
 clock:"Saat",
 weather:"Hava Durumu",
 calendar:"Takvim"
 },
+
 en:{
 clock:"Clock",
 weather:"Weather",
 calendar:"Calendar"
 }
+
 };
 
 function updateClock(){
@@ -189,15 +408,52 @@ now.toLocaleDateString();
 }
 
 setInterval(updateClock,1000);
+
 updateClock();
 
-document.getElementById("lang").addEventListener("change",e=>{
+document
+.getElementById("lang")
+.addEventListener("change",(e)=>{
 
 const t=text[e.target.value];
 
 document.getElementById("clockTitle").innerHTML=t.clock;
 document.getElementById("weatherTitle").innerHTML=t.weather;
 document.getElementById("calendarTitle").innerHTML=t.calendar;
+
+});
+
+document
+.getElementById("theme")
+.addEventListener("change",(e)=>{
+
+document.body.className=e.target.value;
+
+localStorage.setItem(
+"pixorTheme",
+e.target.value
+);
+
+});
+
+const savedTheme=
+localStorage.getItem("pixorTheme");
+
+if(savedTheme){
+
+document.body.className=savedTheme;
+
+}
+
+document
+.getElementById("fullscreenBtn")
+.addEventListener("click",()=>{
+
+if(document.documentElement.requestFullscreen){
+
+document.documentElement.requestFullscreen();
+
+}
 
 });
 
