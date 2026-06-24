@@ -1,1 +1,207 @@
-<h1>Divoom Dashboard</h1>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Pixor Dashboard</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+body{
+background:#02070b;
+color:#8ffcff;
+padding:12px;
+}
+
+.dashboard{
+max-width:1100px;
+margin:auto;
+border:2px solid #00d9ff;
+padding:12px;
+box-shadow:0 0 20px #00d9ff;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:12px;
+}
+
+.logo{
+font-size:24px;
+font-weight:700;
+letter-spacing:2px;
+}
+
+select{
+background:#000;
+color:#8ffcff;
+border:1px solid #00d9ff;
+padding:6px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.panel{
+background:#050505;
+border:1px solid #00d9ff;
+padding:12px;
+box-shadow:
+0 0 10px #00d9ff,
+inset 0 0 10px #00d9ff;
+}
+
+.title{
+font-size:12px;
+opacity:.8;
+margin-bottom:10px;
+}
+
+.big{
+font-size:52px;
+font-weight:bold;
+}
+
+.orange{
+color:#ff8f00;
+}
+
+.clock{
+text-align:center;
+}
+
+.weather{
+font-size:40px;
+text-align:center;
+}
+
+.news{
+line-height:1.8;
+font-size:14px;
+}
+
+@media(max-width:700px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.big{
+font-size:40px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+
+<div class="header">
+<div class="logo">PIXOR</div>
+
+<select id="lang">
+<option value="tr">Türkçe</option>
+<option value="en">English</option>
+</select>
+</div>
+
+<div class="grid">
+
+<div class="panel">
+<div class="title">BTC</div>
+<div class="big orange">98,193.21</div>
+</div>
+
+<div class="panel">
+<div class="title">NASDAQ</div>
+<div>TSLA 403.31</div>
+<div>NVDA 133.23</div>
+<div>AAPL 234.40</div>
+</div>
+
+<div class="panel clock">
+<div class="title" id="clockTitle">Saat</div>
+<div class="big" id="clock"></div>
+</div>
+
+<div class="panel weather">
+<div class="title" id="weatherTitle">Hava Durumu</div>
+☀️
+<div>21°C</div>
+</div>
+
+<div class="panel">
+<div class="title" id="calendarTitle">Takvim</div>
+<div id="date"></div>
+</div>
+
+<div class="panel news">
+<div class="title">NEWS</div>
+<div>• Yapay zeka gelişmeleri</div>
+<div>• Kripto piyasaları</div>
+<div>• Teknoloji haberleri</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const text={
+tr:{
+clock:"Saat",
+weather:"Hava Durumu",
+calendar:"Takvim"
+},
+en:{
+clock:"Clock",
+weather:"Weather",
+calendar:"Calendar"
+}
+};
+
+function updateClock(){
+
+const now=new Date();
+
+document.getElementById("clock").innerHTML=
+now.toLocaleTimeString();
+
+document.getElementById("date").innerHTML=
+now.toLocaleDateString();
+
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+document.getElementById("lang").addEventListener("change",e=>{
+
+const t=text[e.target.value];
+
+document.getElementById("clockTitle").innerHTML=t.clock;
+document.getElementById("weatherTitle").innerHTML=t.weather;
+document.getElementById("calendarTitle").innerHTML=t.calendar;
+
+});
+
+</script>
+
+</body>
+</html>
