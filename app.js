@@ -98,3 +98,4 @@ loadWeather,
 console.log("WEATHER START");
 
 loadWeather();
+
