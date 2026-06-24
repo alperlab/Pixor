@@ -13,3 +13,8 @@ news:"technology",
 theme:"neon"
 
 };
+photo:{
+enabled:true,
+interval:30,
+source:"local"
+}
