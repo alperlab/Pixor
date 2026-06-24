@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<title>PIXOR Dashboard</title>
+<title>PIXOR V2</title>
 
 <style>
 
@@ -22,43 +23,59 @@ font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 --panel:#050505;
 --border:#00d9ff;
 --text:#8ffcff;
+--accent:#ff9900;
 
 }
 
 .theme-oled{
 
---bg:#000000;
---panel:#030303;
---border:#00d9ff;
+--bg:#000;
+--panel:#050505;
+--border:#00e5ff;
 --text:#ffffff;
+--accent:#ff9900;
 
 }
 
 .theme-matte{
 
---bg:#121418;
---panel:#1c2026;
+--bg:#14171c;
+--panel:#1d2229;
 --border:#00bcd4;
---text:#dffcff;
+--text:#eafcff;
+--accent:#ff9900;
 
 }
 
 .theme-light{
 
---bg:#f5f7fa;
+--bg:#f4f7fb;
 --panel:#ffffff;
 --border:#0099ff;
---text:#111111;
+--text:#111;
+--accent:#ff9900;
+
+}
+
+html,
+body{
+
+width:100%;
+height:100%;
+overflow:hidden;
+
+background:var(--bg);
+color:var(--text);
 
 }
 
 body{
 
-background:var(--bg);
-color:var(--text);
-width:100vw;
-height:100vh;
-overflow:hidden;
+padding:
+max(10px,env(safe-area-inset-top))
+max(10px,env(safe-area-inset-right))
+max(10px,env(safe-area-inset-bottom))
+max(10px,env(safe-area-inset-left));
 
 }
 
@@ -66,27 +83,31 @@ overflow:hidden;
 
 width:100%;
 height:100%;
-padding:12px;
+
 display:flex;
 flex-direction:column;
+
+gap:10px;
 
 }
 
 .header{
 
+height:60px;
+
 display:flex;
 justify-content:space-between;
 align-items:center;
+
 gap:10px;
-margin-bottom:12px;
 
 }
 
 .logo{
 
-font-size:32px;
-font-weight:700;
-letter-spacing:3px;
+font-size:clamp(24px,4vw,44px);
+font-weight:800;
+letter-spacing:4px;
 
 }
 
@@ -102,32 +123,95 @@ button{
 
 background:var(--panel);
 color:var(--text);
-border:1px solid var(--border);
-padding:8px 12px;
+
+border:2px solid var(--border);
+
+padding:10px 14px;
+
+border-radius:999px;
+
 cursor:pointer;
+
+box-shadow:
+0 0 10px var(--border);
+
+}
+
+#fullscreenBtn{
+
+width:52px;
 
 }
 
 .grid{
 
 flex:1;
+
 display:grid;
-gap:12px;
+
+gap:10px;
+
+min-height:0;
+
+}
+
+/* TELEFON DİKEY */
+
+@media (max-width:768px){
+
+.grid{
+
+grid-template-columns:1fr 1fr;
+grid-template-rows:repeat(3,1fr);
+
+}
+
+}
+
+/* TABLET */
+
+@media (min-width:769px) and (max-width:1199px){
+
+.grid{
+
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,1fr);
+
+}
+
+}
+
+/* DESKTOP */
+
+@media (min-width:1200px){
+
+.grid{
+
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,1fr);
+
+}
 
 }
 
 .panel{
 
 background:var(--panel);
-border:1px solid var(--border);
+
+border:2px solid var(--border);
+
+border-radius:18px;
 
 padding:14px;
 
-box-shadow:
-0 0 10px var(--border),
-inset 0 0 10px var(--border);
+display:flex;
+flex-direction:column;
 
-border-radius:8px;
+box-shadow:
+0 0 15px var(--border),
+inset 0 0 15px rgba(0,217,255,.25);
+
+overflow:hidden;
 
 }
 
@@ -135,164 +219,90 @@ border-radius:8px;
 
 font-size:13px;
 opacity:.8;
-margin-bottom:10px;
+
+margin-bottom:8px;
 
 }
 
-.big{
+.center{
 
-font-size:64px;
-font-weight:bold;
-
-}
-
-.orange{
-
-color:#ff9900;
-
-}
-
-.clock{
-
-display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
 
 }
 
-.weather{
+.btcValue{
 
-text-align:center;
-
-}
-
-.weatherIcon{
-
-font-size:48px;
-
-}
-
-.weatherTemp{
-
-font-size:52px;
-
-}
-
-.news{
-
-line-height:2;
-font-size:16px;
+font-size:clamp(30px,5vw,72px);
+font-weight:800;
+color:var(--accent);
 
 }
 
 .stock{
 
-line-height:1.8;
-font-size:26px;
+font-size:clamp(18px,2vw,34px);
+line-height:1.7;
 
 }
 
-.calendar{
+.clockValue{
 
-font-size:36px;
+font-size:clamp(34px,6vw,90px);
+font-weight:700;
 
 }
 
-/* TELEFON */
+.weatherIcon{
 
-@media(max-width:768px){
+font-size:clamp(34px,4vw,70px);
 
-.dashboard{
-padding:6px;
+}
+
+.weatherTemp{
+
+font-size:clamp(28px,4vw,64px);
+
+}
+
+.dateValue{
+
+font-size:clamp(22px,3vw,48px);
+
+}
+
+.news{
+
+font-size:clamp(12px,1.5vw,18px);
+
+line-height:1.9;
+
+}
+
+.news div{
+
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+
+}
+
+/* LANDSCAPE TELEFON */
+
+@media (max-height:500px){
+
+.header{
+
+height:50px;
+
 }
 
 .logo{
-font-size:18px;
-}
 
-.header{
-margin-bottom:6px;
-}
-
-.controls{
-gap:4px;
-}
-
-select,
-button{
-padding:4px 6px;
-font-size:12px;
-}
-
-.grid{
-
-grid-template-columns:1fr 1fr;
-grid-template-rows:repeat(3,1fr);
-
-height:calc(100vh - 70px);
-
-gap:6px;
-
-}
-
-.panel{
-padding:8px;
-overflow:hidden;
-}
-
-.big{
 font-size:24px;
-}
-
-.stock{
-font-size:12px;
-line-height:1.2;
-}
-
-.weatherIcon{
-font-size:22px;
-}
-
-.weatherTemp{
-font-size:22px;
-}
-
-.news{
-font-size:10px;
-line-height:1.2;
-}
 
 }
-
-}
-
-}
-
-/* iPad Mini */
-
-@media(min-width:769px) and (max-width:1024px){
-
-.grid{
-
-grid-template-columns:repeat(3,1fr);
-grid-template-rows:repeat(2,1fr);
-
-height:calc(100vh - 90px);
-
-
-}
-
-}
-
-}
-
-}
-
-/* iPad Pro + Desktop */
-
-@media(min-width:1025px){
 
 .grid{
 
@@ -320,19 +330,15 @@ PIXOR
 <div class="controls">
 
 <select id="lang">
-
 <option value="tr">Türkçe</option>
 <option value="en">English</option>
-
 </select>
 
 <select id="theme">
-
 <option value="">Neon</option>
 <option value="theme-oled">OLED</option>
 <option value="theme-matte">Matte</option>
 <option value="theme-light">Light</option>
-
 </select>
 
 <button id="fullscreenBtn">
@@ -351,37 +357,38 @@ PIXOR
 BTC
 </div>
 
-<div class="big orange">
+<div class="btcValue">
 98,193.21
 </div>
 
 </div>
 
-<div class="panel stock">
+<div class="panel">
 
 <div class="title">
 NASDAQ
 </div>
 
+<div class="stock">
 <div>TSLA 403.31</div>
 <div>NVDA 133.23</div>
 <div>AAPL 234.40</div>
+</div>
 
 </div>
 
-<div class="panel clock">
+<div class="panel center">
 
 <div class="title" id="clockTitle">
 Saat
 </div>
 
-<div class="big" id="clock">
+<div class="clockValue" id="clock">
 00:00:00
 </div>
 
 </div>
-
-<div class="panel weather">
+<div class="panel center">
 
 <div class="title" id="weatherTitle">
 Hava Durumu
@@ -397,25 +404,32 @@ Hava Durumu
 
 </div>
 
-<div class="panel calendar">
+<div class="panel center">
 
 <div class="title" id="calendarTitle">
 Takvim
 </div>
 
-<div id="date"></div>
+<div class="dateValue" id="date">
+24.06.2026
+</div>
 
 </div>
 
-<div class="panel news">
+<div class="panel">
 
 <div class="title">
 NEWS
 </div>
 
+<div class="news">
+
 <div>• Yapay zeka gelişmeleri</div>
 <div>• Kripto piyasaları</div>
 <div>• Teknoloji haberleri</div>
+<div>• Küresel piyasa hareketleri</div>
+
+</div>
 
 </div>
 
@@ -488,6 +502,8 @@ localStorage.getItem("pixorTheme");
 if(savedTheme){
 
 document.body.className=savedTheme;
+
+document.getElementById("theme").value=savedTheme;
 
 }
 
