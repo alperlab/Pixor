@@ -23,3 +23,29 @@ document.addEventListener(
 "DOMContentLoaded",
 initPixor
 );
+function loadSettings(){
+
+const saved =
+localStorage.getItem("pixorSettings");
+
+if(saved){
+
+Object.assign(
+pixorSettings,
+JSON.parse(saved)
+);
+
+}
+
+}
+
+function saveSettings(){
+
+localStorage.setItem(
+"pixorSettings",
+JSON.stringify(pixorSettings)
+);
+
+}
+
+loadSettings();
