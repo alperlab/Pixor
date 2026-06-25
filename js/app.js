@@ -1,35 +1,39 @@
 console.log("PIXOR V1.1");
 
-async function loadBTC(){
+async function loadBTC() {
 
-try{
+    try {
 
-const response=await fetch(
-"https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
-);
+        const response = await fetch(
+            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+        );
 
-const data=await response.json();
+        const data = await response.json();
 
-const btc=
-data.bitcoin.usd.toLocaleString();
+        const btc =
+            data.bitcoin.usd.toLocaleString();
 
-const box=
-document.getElementById("btcPrice");
+        const box =
+            document.getElementById("btcPrice");
 
-if(box){
+        if (box) {
 
-box.innerHTML="$"+btc;
+            box.innerHTML = "$" + btc;
+
+        }
+
+    } catch (e) {
+
+        console.log(e);
+
+    }
 
 }
 
-}catch(e){
+document.addEventListener("DOMContentLoaded", () => {
 
-console.log(e);
+    loadBTC();
 
-}
+    setInterval(loadBTC, 60000);
 
-}
-
-loadBTC();
-
-setInterval(loadBTC,60000);
+});
