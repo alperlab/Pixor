@@ -1,4 +1,4 @@
-console.log("PIXOR V1.1");
+console.log("PIXOR V2.2");
 
 async function loadBTC() {
 
@@ -10,11 +10,9 @@ async function loadBTC() {
 
         const data = await response.json();
 
-        const btc =
-            data.bitcoin.usd.toLocaleString();
+        const btc = data.bitcoin.usd.toLocaleString();
 
-        const box =
-            document.getElementById("btcPrice");
+        const box = document.getElementById("btcPrice");
 
         if (box) {
 
@@ -22,9 +20,9 @@ async function loadBTC() {
 
         }
 
-    } catch (e) {
+    } catch (error) {
 
-        console.log(e);
+        console.error("BTC yüklenemedi:", error);
 
     }
 
@@ -35,5 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadBTC();
 
     setInterval(loadBTC, 60000);
+
+    console.log("PIXOR initialized.");
 
 });
