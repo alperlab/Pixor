@@ -1,1 +1,80 @@
-/* PIXOR Themes */
+/* =========================================================
+   PIXOR Themes
+========================================================= */
+
+:root{
+
+--bg:#02070b;
+--panel:#08141b;
+
+--border:#00d9ff;
+
+--text:#8ffcff;
+
+--accent:#ff9900;
+
+}
+
+/* ---------- OLED ---------- */
+
+.theme-oled{
+
+--bg:#000000;
+
+--panel:#050505;
+
+--border:#00f0ff;
+
+--text:#ffffff;
+
+--accent:#ff9900;
+
+}
+
+/* ---------- Matte ---------- */
+
+.theme-matte{
+
+--bg:#1b1e22;
+
+--panel:#2a2e34;
+
+--border:#00bcd4;
+
+--text:#ecf8ff;
+
+--accent:#ff9900;
+
+}
+
+/* ---------- Light ---------- */
+
+.theme-light{
+
+--bg:#eef3f8;
+
+--panel:#ffffff;
+
+--border:#0099ff;
+
+--text:#222222;
+
+--accent:#ff8800;
+
+}
+
+/* ---------- Neon ---------- */
+
+.theme-neon{
+
+--bg:#02070b;
+
+--panel:#08141b;
+
+--border:#00d9ff;
+
+--text:#8ffcff;
+
+--accent:#ff9900;
+
+}
