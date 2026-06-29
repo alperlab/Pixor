@@ -1,3 +1,5 @@
+console.log("Crypto service loaded");
+
 async function loadCrypto() {
 
     try {
@@ -16,10 +18,29 @@ async function loadCrypto() {
 
         };
 
+        const btcBox = document.getElementById("btcPrice");
+
+        if (btcBox) {
+
+            btcBox.innerHTML =
+                "$" + data.bitcoin.usd.toLocaleString();
+
+        }
+
+        console.log("BTC Updated:", data.bitcoin.usd);
+
     } catch (e) {
 
-        console.log("Crypto Error", e);
+        console.error("Crypto Error:", e);
 
     }
 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    loadCrypto();
+
+    setInterval(loadCrypto, 60000);
+
+});
