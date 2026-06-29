@@ -1,20 +1,29 @@
-const pixorSettings = {
+console.log("Settings loaded");
 
-crypto:"BTC",
+const Settings = {
 
-stocks:[
-"TSLA",
-"NVDA",
-"AAPL"
-],
+    save(key, value) {
 
-news:"technology",
+        localStorage.setItem(key, JSON.stringify(value));
 
-theme:"neon"
+    },
+
+    load(key, defaultValue = null) {
+
+        const value = localStorage.getItem(key);
+
+        if (!value) return defaultValue;
+
+        try {
+
+            return JSON.parse(value);
+
+        } catch {
+
+            return defaultValue;
+
+        }
+
+    }
 
 };
-photo:{
-enabled:true,
-interval:30,
-source:"local"
-}
